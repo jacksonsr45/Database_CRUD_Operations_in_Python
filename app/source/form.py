@@ -62,7 +62,7 @@ class form_crud(data):
         self.phonebox = tkinter.Entry(self.frame_side_left)
 
         self.name.place(relx=0.1, rely=0.1, relwidth=0.1, relheight=0.1)
-        self.namebox.place(relx=0.2, rely=0.1, relwidth=0.20, relheight=0.1)
+        self.namebox.place(relx=0.2, rely=0.1, relwidth=0.25, relheight=0.1)
 
         self.lastname.place(relx=0.05, rely=0.25, relwidth=0.15, relheight=0.1)
         self.lastnamebox.place(relx=0.2, rely=0.25, relwidth=0.25, relheight=0.1)
@@ -71,7 +71,7 @@ class form_crud(data):
         self.idbox.place(relx=0.2, rely=0.40, relwidth=0.25, relheight=0.1)
         
         self.phone.place(relx=0.1, rely=0.55, relwidth=0.1, relheight=0.1)
-        self.phonebox.place(relx=0.2, rely=0.55, relwidth=0.20, relheight=0.1)
+        self.phonebox.place(relx=0.2, rely=0.55, relwidth=0.25, relheight=0.1)
        
 
         #=============================Buttons============================================================================================#
