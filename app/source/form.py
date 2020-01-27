@@ -6,7 +6,7 @@ from app.data.form_data import data
 class form_crud(data):
     def __init__(self, master):
         
-        self.InitDb()
+        self.__InitDb__()
 
         __font_Button__     = ("Ubunto", 17)
         __font__            = ("Ubunto", 12)
@@ -25,7 +25,7 @@ class form_crud(data):
         self.scrollbar.place(relx=0.95, rely=0, relwidth=0.05, relheight=1)
         self.frameList.configure(yscrollcommand=self.scrollbar.set)
         self.frameList.configure(font = __font_list__)
-        self.frameList.bind('<<ListboxSelect>>', self.View_frame)
+        self.frameList.bind('<<ListboxSelect>>', self.__View_frame__)
         self.frameList.place(relx=0.01, rely=0, relwidth=0.95, relheight=90)  
 
         #=================================================================================================================#    
@@ -61,6 +61,8 @@ class form_crud(data):
         self.phone.configure(text="Phone:")
         self.phonebox = tkinter.Entry(self.frame_side_left)
 
+        self.searchbox = tkinter.Entry(self.frame_side_left)
+
         self.name.place(relx=0.1, rely=0.1, relwidth=0.1, relheight=0.1)
         self.namebox.place(relx=0.2, rely=0.1, relwidth=0.25, relheight=0.1)
 
@@ -72,7 +74,18 @@ class form_crud(data):
         
         self.phone.place(relx=0.1, rely=0.55, relwidth=0.1, relheight=0.1)
         self.phonebox.place(relx=0.2, rely=0.55, relwidth=0.25, relheight=0.1)
-       
+
+
+        self.searchbox.place(relx=0.2, rely=0.80, relwidth=0.25, relheight=0.1)
+
+        self.button_search = tkinter.Button(self.frame_side_left)
+        self.button_search.configure(border=0)
+        self.button_search.configure(font= __font_Button__)
+        self.button_search.configure(command=self.__Search__)
+        self.button_search.configure(bg="powder blue")
+        self.button_search.configure(text="<= Search")
+
+        self.button_search.place(relx=0.45, rely=0.80, relwidth=0.18, relheight=0.1)
 
         #=============================Buttons============================================================================================#
         self.frame_side_down = tkinter.Frame(self.master)
@@ -84,17 +97,20 @@ class form_crud(data):
         self.button_save.configure(border=0)
         self.button_save.configure(font= __font_Button__)
         self.button_save.configure(bg="powder blue")
+        self.button_save.configure(command=self.__Save__)
         self.button_save.configure(text="Save")
         
         self.button_update = tkinter.Button(self.frame_side_down)
         self.button_update.configure(border=0)
         self.button_update.configure(font= __font_Button__)
+        self.button_update.configure(command=self.__Update__)
         self.button_update.configure(bg="powder blue")
         self.button_update.configure(text="Update")
         
         self.button_delete = tkinter.Button(self.frame_side_down)
         self.button_delete.configure(border=0)
         self.button_delete.configure(font= __font_Button__)
+        self.button_delete.configure(command=self.__Delete__)
         self.button_delete.configure(bg="powder blue")
         self.button_delete.configure(text="Delete")
         

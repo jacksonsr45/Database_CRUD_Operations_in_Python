@@ -10,8 +10,22 @@ class data(object):
         self.idbox              = tkinter.Entry()
         self.phonebox           = tkinter.Entry()
 
-    def View_frame(self):
+        self.searchbox          = tkinter.Entry()
+
+    def __View_frame__(self):
         pass
 
-    def InitDb(self):
+    def __Search__(self):
+        pass
+    
+    def __Save__(self):
+        pass
+    
+    def __Update__(self):
+        pass
+    
+    def __Delete__(self):
+        pass
+
+    def __InitDb__(self):
         Create()
