@@ -4,7 +4,10 @@ from app.model.crud_model import *
 
 class data(object):
     def __init__(self):
-        Create()
+        pass
 
     def View_frame(self):
         pass
+
+    def InitDb(self):
+        Create()

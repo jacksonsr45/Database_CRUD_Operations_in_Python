@@ -6,6 +6,8 @@ from app.data.form_data import data
 class form_crud(data):
     def __init__(self, master):
         
+        self.InitDb()
+
         __font_Button__     = ("Ubunto", 17)
         __font__            = ("Ubunto", 12)
         __font_list__       = ("Ubunto", 15)
