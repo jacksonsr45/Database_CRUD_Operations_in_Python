@@ -1,9 +1,9 @@
 __author__ = 'jacksonsr45@gmail.com'
 
 import tkinter
-from app.source.form import form_crud
+from app.data.form_crud import Crude
 
-class main:
-    master = tkinter.Tk()
-    form_crud(master)
-    master.mainloop()
+class Main:
+    root = tkinter.Tk()
+    Crude(root)
+    root.mainloop()
