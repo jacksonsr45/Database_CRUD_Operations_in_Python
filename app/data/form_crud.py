@@ -82,26 +82,71 @@ class Crude:
                             font['font'], 0, color['blue'], 'normal', 0.5,
                             0.5, 0.15, 0.3, self.__delete__)
 
-        
+        self.__search__()
+
+
+
+    def __clear__(self):
+        self.name.set(' ')
+        self.last_name.set(' ')
+        self.id.set(' ')
+        self.phone.set(' ')
+
 
     def __search__(self):
-        pass
+        self.__clear__()
+        self.frame_list.delete(0, tkinter.END)
+        if self.search.get():
+            for row in Search(self.search.get()):
+                self.frame_list.insert(tkinter.END, row)
+        else:
+            for row in Search_All():
+                self.frame_list.insert(tkinter.END, row)
 
 
     def __save__(self):
-        pass
+        Save(self.name.get(), self.last_name.get(), self.id.get(), 
+            self.phone.get())
+    
+        self.__clear__()
+        self.__search__()
 
 
     def __update__(self):
-        pass
+        Update(self.name.get(), self.last_name.get(), self.id.get(), 
+            self.phone.get())
+    
+        self.__clear__()
+        self.__search__()
 
 
     def __delete__(self):
-        pass
+        Delete(self.name.get())
+    
+        self.__clear__()
+        self.__search__()
 
 
-    def __view_frame__(self):
-        pass
+    def __view_frame__(self, *args):
+        self.__clear__()
+        searchStd = self.frame_list.curselection()[0]
+        sd = self.frame_list.get(searchStd)
+        try:
+            self.name.set(sd[1])
+        except Exception as e:
+            print(e)
+        try:
+            self.last_name.set(sd[2])
+        except Exception as e:
+            print(e)
+        try:            
+            self.id.set(sd[3])
+        except Exception as e:
+            print(e)
+        try:            
+            self.phone.set(sd[4])
+        except Exception as e:
+            print(e)
 
 
     def __button__(self, root, text, font, bd, bg, state, x, 

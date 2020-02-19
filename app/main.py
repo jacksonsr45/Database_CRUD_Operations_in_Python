@@ -1,9 +1,7 @@
 __author__ = 'jacksonsr45@gmail.com'
 
 import tkinter
-from app.data.form_crud import Crude
-from app.model.crud_model import Create
-
+from .import *
 
 class Main:
     Create()

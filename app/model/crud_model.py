@@ -44,7 +44,7 @@ def Update( name, lastname, cid, phone):
     conn.commit()
     conn.close()
 
-def Delele( name):
+def Delete( name):
     conn   = sqlite3.connect('crud.db')
     cursor = conn.cursor()
     cursor.execute("""DELETE FROM crud WHERE name = '{}' """.format(name))
