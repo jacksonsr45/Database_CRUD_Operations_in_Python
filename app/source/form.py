@@ -8,30 +8,6 @@ class form_crud(data):
         
         self.__InitDb__()
 
-        __font_Button__     = ("Ubunto", 17)
-        __font__            = ("Ubunto", 12)
-        __font_list__       = ("Ubunto", 15)
-
-        self.master = master
-        self.master.title("CRUD SQLITE3 IN PYTHON")
-        self.master.geometry("900x300")
-        self.master.resizable(width=False, height=False)
-
-        self.frame_side_right = tkinter.Frame(self.master)
-        self.frame_side_right.place(relx=0.7, rely=0, relwidth=0.3, relheight=1)
-
-        self.frameList = tkinter.Listbox(self.frame_side_right)
-        self.scrollbar = tkinter.Scrollbar(self.frame_side_right, command=self.frameList.yview)
-        self.scrollbar.place(relx=0.95, rely=0, relwidth=0.05, relheight=1)
-        self.frameList.configure(yscrollcommand=self.scrollbar.set)
-        self.frameList.configure(font = __font_list__)
-        self.frameList.bind('<<ListboxSelect>>', self.__View_frame__)
-        self.frameList.place(relx=0.01, rely=0, relwidth=0.95, relheight=90)  
-
-        #=================================================================================================================#    
-        self.frame_side_left = tkinter.Frame(self.master)
-        self.frame_side_left.configure(bg="powder blue")
-        self.frame_side_left.place(relx=0, rely=0, relwidth=0.7, relheight=0.7)
 
         self.name = tkinter.Label(self.frame_side_left)
         self.name.configure(bg="powder blue")
