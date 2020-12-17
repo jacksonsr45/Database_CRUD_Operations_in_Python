@@ -1,5 +1,5 @@
 # Database_CRUD_Operations_in_Python
- Sqlite Database, a simple CRUD with mysql in python3
+A simple CRUD with mysql in python3
 
 ## This use a simple migrate with is init in __init__.py by user 
 create new table and extend migrate 
