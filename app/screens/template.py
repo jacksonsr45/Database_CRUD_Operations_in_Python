@@ -1,11 +1,11 @@
 __author__ = "jacksonsr45@gmail.com"
 
 import tkinter
-from .import *
+from tkinter import StringVar, OptionMenu
+from app.model.user import User
 
-
-class Crude:
-    def __init__( self, root):
+class Template:
+    def __init__( self, root, colors, fonts):
         self.root = root
         x = (self.root.winfo_screenwidth() // 2) - (900 // 2)
         y = (self.root.winfo_screenheight() // 2) - (300 // 2)
@@ -21,17 +21,18 @@ class Crude:
         self.phone = tkinter.StringVar()
         self.id = tkinter.StringVar()
 
-        self.frame_side_right = self.__frame__( self.root, color['black'],
-                            0, 0, color['blue'], 0.7, 0, 0.3, 1)
 
-        self.frame_side_left = self.__frame__( self.root, color['black'],
-                            0, 0, color['blue'], 0, 0, 0.7, 0.7)
+        self.frame_side_right = self.__frame__( self.root, colors['black'],
+                            0, 0, colors['blue'], 0.7, 0, 0.3, 1)
 
-        self.frame_side_down = self.__frame__( self.root, color['black'],
-                            0, 0, color['blue'], 0, 0.7, 0.7, 0.3)
+        self.frame_side_left = self.__frame__( self.root, colors['black'],
+                            0, 0, colors['blue'], 0, 0, 0.7, 0.7)
+
+        self.frame_side_down = self.__frame__( self.root, colors['black'],
+                            0, 0, colors['blue'], 0, 0.7, 0.7, 0.3)
 
         self.frame_list = self.__listbox__(self.frame_side_right, 0, 
-                font['font_list'], self.list.get(), self.__view_frame__, 
+                fonts['fonts_list'], self.list.get(), self.__view_frame__, 
                 0.01, 0, 0.95, 0.9)
 
         self.scrollbar = self.__scrollbar__(self.frame_side_right, 
@@ -39,50 +40,55 @@ class Crude:
 
         self.frame_list.configure(yscrollcommand=self.scrollbar.set)
 
-        self.__label__(self.frame_side_left, font['font'], color['blue'], 
+        self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
                        'Name:', 0.1, 0.1, 0.1, 0.1)
         
-        self.__label__(self.frame_side_left, font['font'], color['blue'], 
+        self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
                        'Last Name:', 0.05, 0.25, 0.15, 0.1)
         
-        self.__label__(self.frame_side_left, font['font'], color['blue'], 
+        self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
                        'ID:', 0.1, 0.4, 0.1, 0.1)
         
-        self.__label__(self.frame_side_left, font['font'], color['blue'], 
+        self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
                        'Phone:', 0.1, 0.55, 0.1, 0.1)
 
-        self.__entry__(self.frame_side_left, font['font'], self.name, 0,
-                        'normal', color['white'], 0.2, 0.1, 0.25, 0.1).focus()
+        self.__entry__(self.frame_side_left, fonts['fonts'], self.name, 0,
+                        'normal', colors['white'], 0.2, 0.1, 0.25, 0.1).focus()
 
-        self.__entry__(self.frame_side_left, font['font'], self.last_name, 0,
-                        'normal', color['white'], 0.2, 0.25, 0.25, 0.1)
+        self.__entry__(self.frame_side_left, fonts['fonts'], self.last_name, 0,
+                        'normal', colors['white'], 0.2, 0.25, 0.25, 0.1)
 
-        self.__entry__(self.frame_side_left, font['font'], self.id, 0,
-                        'normal', color['white'], 0.2, 0.4, 0.25, 0.1)
+        self.__entry__(self.frame_side_left, fonts['fonts'], self.id, 0,
+                        'normal', colors['white'], 0.2, 0.4, 0.25, 0.1)
 
-        self.__entry__(self.frame_side_left, font['font'], self.phone, 0,
-                        'normal', color['white'], 0.2, 0.55, 0.25, 0.1)
+        self.__entry__(self.frame_side_left, fonts['fonts'], self.phone, 0,
+                        'normal', colors['white'], 0.2, 0.55, 0.25, 0.1)
 
-        self.__entry__(self.frame_side_left, font['font'], self.search, 0,
-                        'normal', color['white'], 0.2, 0.80, 0.25, 0.1)
+        self.variable = StringVar(self.frame_side_left)
+        self.variable.set("id")
+        self.select_menu = OptionMenu(self.frame_side_left, self.variable, "id", "name", "phone")
+        self.select_menu.place(relx=0.04, rely=0.8, relwidth=0.15, relheight=0.1)
+
+
+        self.__entry__(self.frame_side_left, fonts['fonts'], self.search, 0,
+                        'normal', colors['white'], 0.2, 0.80, 0.25, 0.1)
+
 
         self.btn_search = self.__button__(self.frame_side_left, '<= Search', 
-                            font['font'], 0, color['blue'], 'normal', 0.45,
+                            fonts['fonts'], 0, colors['blue'], 'normal', 0.45,
                             0.8, 0.18, 0.1, self.__search__)
 
         self.btn_save = self.__button__(self.frame_side_down, 'SAVE', 
-                            font['font'], 0, color['blue'], 'normal', 0.1,
+                            fonts['fonts'], 0, colors['blue'], 'normal', 0.1,
                             0.5, 0.15, 0.3, self.__save__)
 
         self.btn_update = self.__button__(self.frame_side_down, 'UPDATE', 
-                            font['font'], 0, color['blue'], 'normal', 0.3,
+                            fonts['fonts'], 0, colors['blue'], 'normal', 0.3,
                             0.5, 0.15, 0.3, self.__update__)
 
         self.btn_delete = self.__button__(self.frame_side_down, 'DELETE', 
-                            font['font'], 0, color['blue'], 'normal', 0.5,
+                            fonts['fonts'], 0, colors['blue'], 'normal', 0.5,
                             0.5, 0.15, 0.3, self.__delete__)
-
-        self.__search__()
 
 
 
@@ -93,35 +99,44 @@ class Crude:
         self.phone.set(' ')
 
 
+
     def __search__(self):
         self.__clear__()
         self.frame_list.delete(0, tkinter.END)
         if self.search.get():
-            for row in Search(self.search.get()):
+            for row in User.find_where(User, {self.variable.get(), self.search.get()}):
                 self.frame_list.insert(tkinter.END, row)
+            pass 
+
         else:
-            for row in Search_All():
+            for row in User.find_all(User):
                 self.frame_list.insert(tkinter.END, row)
+            pass
 
 
     def __save__(self):
-        Save(self.name.get(), self.last_name.get(), self.id.get(), 
-            self.phone.get())
+        User.insert(User, { 
+            "name": self.name.get(), 
+            "last_name": self.last_name.get(), 
+            "phone": self.phone.get()
+        })
     
         self.__clear__()
         self.__search__()
 
 
     def __update__(self):
-        Update(self.name.get(), self.last_name.get(), self.id.get(), 
-            self.phone.get())
+        User.update(User, { 
+            "last_name": self.last_name.get(), 
+            "phone": self.phone.get()
+        }, {"name": self.name.get()})
     
         self.__clear__()
         self.__search__()
 
 
     def __delete__(self):
-        Delete(self.name.get())
+        User.delete(User, { "name": self.name.get()})
     
         self.__clear__()
         self.__search__()
@@ -147,6 +162,7 @@ class Crude:
             self.phone.set(sd[4])
         except Exception as e:
             print(e)
+            
 
 
     def __button__(self, root, text, font, bd, bg, state, x, 

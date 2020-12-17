@@ -1,0 +1,6 @@
+db = {
+    'host': 'db_host',
+    'username': 'db_username',
+    'password': 'db_password',
+    'db_name': 'db_name'
+}

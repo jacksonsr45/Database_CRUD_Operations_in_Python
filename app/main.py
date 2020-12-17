@@ -1,10 +1,10 @@
 __author__ = 'jacksonsr45@gmail.com'
 
 import tkinter
-from .import *
+from app import colors, fonts
+from app.screens.template import Template
 
 class Main:
-    Create()
     root = tkinter.Tk()
-    Crude(root)
+    Template(root, colors, fonts)
     root.mainloop()
