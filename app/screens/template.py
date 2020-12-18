@@ -47,7 +47,7 @@ class Template:
                        'Last Name:', 0.05, 0.25, 0.15, 0.1)
         
         self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
-                       'ID:', 0.1, 0.4, 0.1, 0.1)
+                       'Document ID:', 0.001, 0.4, 0.20, 0.1)
         
         self.__label__(self.frame_side_left, fonts['fonts'], colors['blue'], 
                        'Phone:', 0.1, 0.55, 0.1, 0.1)
@@ -66,8 +66,8 @@ class Template:
 
         self.variable = StringVar(self.frame_side_left)
         self.variable.set("id")
-        self.select_menu = OptionMenu(self.frame_side_left, self.variable, "id", "name", "phone")
-        self.select_menu.place(relx=0.04, rely=0.8, relwidth=0.15, relheight=0.1)
+        self.select_menu = OptionMenu(self.frame_side_left, self.variable, "id", "name", "document_id", "phone")
+        self.select_menu.place(relx=0.001, rely=0.8, relwidth=0.20, relheight=0.1)
 
 
         self.__entry__(self.frame_side_left, fonts['fonts'], self.search, 0,
@@ -104,9 +104,9 @@ class Template:
         self.__clear__()
         self.frame_list.delete(0, tkinter.END)
         if self.search.get():
-            for row in User.find_where(User, {self.variable.get(), self.search.get()}):
+            value = User.find_where(User, {self.variable.get(): self.search.get()})
+            for row in value:
                 self.frame_list.insert(tkinter.END, row)
-            pass 
 
         else:
             for row in User.find_all(User):
@@ -118,6 +118,7 @@ class Template:
         User.insert(User, { 
             "name": self.name.get(), 
             "last_name": self.last_name.get(), 
+            "document_id": self.id.get(), 
             "phone": self.phone.get()
         })
     
@@ -127,7 +128,8 @@ class Template:
 
     def __update__(self):
         User.update(User, { 
-            "last_name": self.last_name.get(), 
+            "last_name": self.last_name.get(),
+            "document_id": self.id.get(), 
             "phone": self.phone.get()
         }, {"name": self.name.get()})
     
